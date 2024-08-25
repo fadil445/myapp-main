@@ -27,7 +27,8 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
     );
 
     if (response.statusCode == 200) {
-      List data = json.decode(response.body);
+      List<dynamic> data = jsonDecode(response.body)['data'];
+
       setState(() {
         _beritaPromoList = data.map((item) => item['judul_promo']).toList().cast<String>();
         _beritaPromoIdList = data.map((item) => item['promo_id']).toList().cast<String>();
@@ -91,10 +92,10 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
                     _selectedBeritaPromoId = newValue;
                   });
                 },
-                items: _beritaPromoList.map<DropdownMenuItem<String>>((String value) {
+                items: _promo.map<DropdownMenuItem<String>>((value) {
                   return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+                    value: value['promo_id'],
+                    child: Text(value['judul_promo'] ?? ''),
                   );
                 }).toList(),
                 validator: (value) => value == null ? 'Pilih berita promo yang ingin dihapus' : null,
