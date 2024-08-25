@@ -10,17 +10,18 @@ class HapusBeritaPromo extends StatefulWidget {
 
 class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
   final _formKey = GlobalKey<FormState>();
-  String? _selectedBeritaPromoId;
-  List<String> _beritaPromoList = [];
-  List<String> _beritaPromoIdList = [];
+  String? _selectedPromoId;
+  List<String> _promoList = [];
+  List<String> _promoIdList = [];
   List<dynamic> _promo = [];
+
   @override
   void initState() {
     super.initState();
-    _fetchBeritaPromo();
+    _fetchPromo();
   }
 
-  Future<void> _fetchBeritaPromo() async {
+  Future<void> _fetchPromo() async {
     final response = await http.post(
       Uri.parse('${dotenv.env['ENDPOINT']}/'),
       body: {'action': 'get_promo'},
@@ -30,34 +31,39 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
       List<dynamic> data = jsonDecode(response.body)['data'];
 
       setState(() {
-        _beritaPromoList = data.map((item) => item['judul_promo']).toList().cast<String>();
-        _beritaPromoIdList = data.map((item) => item['promo_id']).toList().cast<String>();
+        _promo = data;
+        _promoList = data.map((item) => item['judul_promo']).toList().cast<String>();
+        _promoIdList = data.map((item) => item['promo_id']).toList().cast<String>();
       });
     } else {
-      print('Failed to load berita promo');
+      print('Failed to load promo');
     }
   }
 
-  Future<void> _hapusBeritaPromo() async {
+  Future<void> _hapusPromo() async {
     final response = await http.post(
       Uri.parse('${dotenv.env['ENDPOINT']}/'),
-      body: {'action': 'delete_berita_promo', 'id_promo': _selectedBeritaPromoId},
+      body: {'action': 'delete_promo', 'id_promo': _selectedPromoId},
     );
 
     if (response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
       if (jsonResponse['status']) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Berita Promo berhasil dihapus')),
+          SnackBar(content: Text('Promo berhasil dihapus')),
         );
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Gagal menghapus berita promo')),
+          SnackBar(content: Text('Gagal menghapus promo')),
         );
       }
     } else {
-      print('Failed to delete berita promo');
+      print('Failed to delete promo');
     }
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => super.widget));
   }
 
   @override
@@ -73,7 +79,7 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
           onPressed: () {
             Navigator.pop(context);
           },
-        ),
+        ),  
       ),
       backgroundColor: Color.fromARGB(255, 46, 38, 95),
       body: Padding(
@@ -84,12 +90,12 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DropdownButtonFormField<String>(
-                value: _selectedBeritaPromoId,
+                value: _selectedPromoId,
                 hint: Text('Pilih Promo'),
                 style: TextStyle(color: Colors.white),
                 onChanged: (String? newValue) {
                   setState(() {
-                    _selectedBeritaPromoId = newValue;
+                    _selectedPromoId = newValue;
                   });
                 },
                 items: _promo.map<DropdownMenuItem<String>>((value) {
@@ -98,16 +104,16 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
                     child: Text(value['judul_promo'] ?? ''),
                   );
                 }).toList(),
-                validator: (value) => value == null ? 'Pilih berita promo yang ingin dihapus' : null,
+                validator: (value) => value == null ? 'Pilih promo yang ingin dihapus' : null,
               ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    _hapusBeritaPromo();
+                    _hapusPromo();
                   }
                 },
-                child: Text('Hapus Berita Promo'),
+                child: Text('Hapus Promo'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(218, 251, 138, 0),
                 ),
