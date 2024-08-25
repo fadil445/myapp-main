@@ -19,6 +19,9 @@ class _CreatescreenState extends State<Createscreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordConController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _alamatController = TextEditingController();
+  final TextEditingController _no_hpController = TextEditingController();
+
 void _showDialog(String title, String content) {
     showDialog<void>(
       context: context,
@@ -55,8 +58,8 @@ Future<void> _register() async {
           "password": _passwordController.text,
           "password2" :_passwordConController.text,
           "nama_user" : _nameController.text,
-          "alamat": "",
-          "no_handphone": "",
+          "alamat": _alamatController.text,
+          "no_handphone": _no_hpController.text,
           "action": "pendaftaran",
         },
       );
@@ -135,13 +138,11 @@ _showDialog('Pemberitahuan !!!', 'BERHASIL silahkan login!');
                       
 //kolom nama
                       
-                      TextField(
-                        controller: _nameController,
+                 TextField(
+                  controller: _nameController,
                         decoration: InputDecoration(
-                            label: Text(
-                              
+                            label: Text(      
                           'Full Name',
-                          
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xffB81736),
@@ -149,6 +150,7 @@ _showDialog('Pemberitahuan !!!', 'BERHASIL silahkan login!');
                         )),
                       ),
                  TextField(
+
                   controller: _emailController,
                         decoration: InputDecoration(
                             label: Text(
@@ -170,13 +172,33 @@ _showDialog('Pemberitahuan !!!', 'BERHASIL silahkan login!');
                           ),
                         )),
                       ),
-                    
-                
-                      TextField(
-                        controller: _passwordConController,
+                 TextField(
+                   controller: _passwordConController,
                         decoration: InputDecoration(
                             label: Text(
                           'Confirm Password',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffB81736),
+                          ),
+                        )),
+                      ),
+                 TextField(
+                   controller: _alamatController,
+                        decoration: InputDecoration(
+                            label: Text(
+                          'Alamat',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffB81736),
+                          ),
+                        )),
+                      ),
+                 TextField(
+                   controller: _no_hpController,
+                        decoration: InputDecoration(
+                            label: Text(
+                          'No. Hp',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xffB81736),
