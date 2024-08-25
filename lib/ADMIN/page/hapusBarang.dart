@@ -13,7 +13,7 @@ class _HapusBarangState extends State<HapusBarang> {
   String? _selectedBarangId;
   List<String> _barangList = [];
   List<String> _barangIdList = [];
-
+  List<dynamic> _barang = [];
   @override
   void initState() {
     super.initState();
@@ -27,10 +27,12 @@ class _HapusBarangState extends State<HapusBarang> {
     );
 
     if (response.statusCode == 200) {
-      List data = json.decode(response.body);
+      List<dynamic> data = jsonDecode(response.body)['data'];
+
       setState(() {
+        _barang = data;
         _barangList = data.map((item) => item['nama_barang']).toList().cast<String>();
-        _barangIdList = data.map((item) => item['id_barang']).toList().cast<String>();
+        _barangIdList = data.map((item) => item['barang_id']).toList().cast<String>();
       });
     } else {
       print('Failed to load barang');
@@ -57,6 +59,11 @@ class _HapusBarangState extends State<HapusBarang> {
     } else {
       print('Failed to delete barang');
     }
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+            builder: (BuildContext context) => super.widget));
+
   }
 
   @override
@@ -72,7 +79,7 @@ class _HapusBarangState extends State<HapusBarang> {
           onPressed: () {
             Navigator.pop(context);
           },
-        ),
+        ),  
       ),
       backgroundColor: Color.fromARGB(255, 46, 38, 95),
       body: Padding(
@@ -85,16 +92,16 @@ class _HapusBarangState extends State<HapusBarang> {
               DropdownButtonFormField<String>(
                 value: _selectedBarangId,
                 hint: Text('Pilih Barang'),
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedBarangId = newValue;
                   });
                 },
-                items: _barangList.map<DropdownMenuItem<String>>((String value) {
+                items: _barang.map<DropdownMenuItem<String>>((value) {
                   return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
+                    value: value['barang_id'],
+                    child: Text(value['nama_barang'] ?? ''),
                   );
                 }).toList(),
                 validator: (value) => value == null ? 'Pilih barang yang ingin dihapus' : null,

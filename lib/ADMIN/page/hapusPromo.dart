@@ -13,7 +13,7 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
   String? _selectedBeritaPromoId;
   List<String> _beritaPromoList = [];
   List<String> _beritaPromoIdList = [];
-
+  List<dynamic> _promo = [];
   @override
   void initState() {
     super.initState();
@@ -23,14 +23,14 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
   Future<void> _fetchBeritaPromo() async {
     final response = await http.post(
       Uri.parse('${dotenv.env['ENDPOINT']}/'),
-      body: {'action': 'get_berita_promo'},
+      body: {'action': 'get_promo'},
     );
 
     if (response.statusCode == 200) {
       List data = json.decode(response.body);
       setState(() {
-        _beritaPromoList = data.map((item) => item['judul_berita']).toList().cast<String>();
-        _beritaPromoIdList = data.map((item) => item['id_berita']).toList().cast<String>();
+        _beritaPromoList = data.map((item) => item['judul_promo']).toList().cast<String>();
+        _beritaPromoIdList = data.map((item) => item['promo_id']).toList().cast<String>();
       });
     } else {
       print('Failed to load berita promo');
@@ -40,7 +40,7 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
   Future<void> _hapusBeritaPromo() async {
     final response = await http.post(
       Uri.parse('${dotenv.env['ENDPOINT']}/'),
-      body: {'action': 'delete_berita_promo', 'id_berita': _selectedBeritaPromoId},
+      body: {'action': 'delete_berita_promo', 'id_promo': _selectedBeritaPromoId},
     );
 
     if (response.statusCode == 200) {
