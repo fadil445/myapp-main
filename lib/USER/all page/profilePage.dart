@@ -93,7 +93,7 @@ class _ProfilepageState extends State<Profilepage> {
           Column(
             children: [
               CircleAvatar(
-                radius: 50,
+                radius: 70,
                 child: akun['image'] != '' && akun['image'] != null
                     ? ClipRRect(borderRadius: BorderRadius.circular(999), 
                     child:  Image.memory(base64Decode(akun['image']),
@@ -105,7 +105,7 @@ class _ProfilepageState extends State<Profilepage> {
               Text(
                 akun['nama_user'] ?? '',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
