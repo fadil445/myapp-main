@@ -72,7 +72,7 @@ class _KategoribarangState extends State<Kategoribarang> {
     var request = http.MultipartRequest('POST', Uri.parse("${dotenv.env["ENDPOINT"]}/"));
     request.fields['action'] = 'insert_barang';
     request.fields['nama_barang'] = _judulBarangController.text;
-    request.fields['deskripsi'] = _deskripsiController.text;
+    request.fields['deskripsi_barang'] = _deskripsiController.text;
     request.fields['id_kategori'] = _selectedKategoriId ?? '';
     request.fields['qty'] = _qtyController.text;
     request.fields['status'] = _selectedStatus?.toLowerCase() ?? 'tersedia';

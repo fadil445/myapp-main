@@ -62,7 +62,7 @@ class _BarangListState extends State<BarangList> {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
-              return Center(child: Text('No Data'));
+              return Center(child: Text('Kosong'));
             } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
               return Center(child: Text('No items found'));
             } else {
@@ -80,7 +80,7 @@ class _BarangListState extends State<BarangList> {
                             id:  item['barang_id'] ?? "",
                             title: item['nama_barang'] ?? "",
                             price: item['harga_barang'] ?? "",
-                            description: item['create_barang'] ?? "",
+                            description: item['deskripsi_barang'] ?? "",
                             image: item['image'] ?? "",
                             category: '${widget.kategori}',
                           ),
