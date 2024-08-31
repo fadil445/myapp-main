@@ -25,11 +25,24 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
             children: [
               pw.Text('Detail Transaksi', style: pw.TextStyle(fontSize: 24)),
               pw.SizedBox(height: 20),
+              pw.Text('------------------------------------'),
+              pw.SizedBox(height: 4),
+              pw.Text('ID User: ${widget.transaksi['id_user']}'),
+              pw.Text('ID Transaksi: ${widget.transaksi['transaksi_id']}'),
+              pw.SizedBox(height: 4),
+              pw.Text('------------------------------------'),
+              pw.SizedBox(height: 4),
               pw.Text('Nama: ${widget.transaksi['nama_user']}'),
+              pw.SizedBox(height: 2),
               pw.Text('Tanggal: ${widget.transaksi['create_transaksi']}'),
-              pw.Text('Jumlah: ${widget.transaksi['qty']}'),
-              pw.Text(
-                'Status: ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',
+              pw.SizedBox(height: 2),
+              pw.Text('Jumlah Barang: ${widget.transaksi['qty']}'),
+              pw.SizedBox(height: 2),
+              pw.Text('Jumlah Transaksi: ${widget.transaksi['total_transaksi']}'),
+              pw.SizedBox(height: 2),
+              pw.Text('Metode Pembayaran: ${widget.transaksi['metode_pembayaran']}'),
+              pw.SizedBox(height: 2),
+              pw.Text('Status: ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',
               ),
             ],
           );
@@ -42,7 +55,7 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
     if (outputFile != null) {
       Printing.sharePdf(
         bytes: outputFile.readAsBytesSync(),
-        filename: 'detail_transaksi_${widget.transaksi['id']}.pdf',
+        filename: 'Transaksi ${widget.transaksi['nama_user']}.pdf',
       );
     }
   }
@@ -63,7 +76,7 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Transaksi #${widget.transaksi['id']}'),
+        title: Text('Detail Transaksi'),
         leading: IconButton(
           iconSize: 20,
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -86,20 +99,35 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(
-              'Nama: ${widget.transaksi['nama_user']}',
-              style: TextStyle(fontSize: 18, color: Colors.white),
-            ),
+            Text('----------------------------------------------------------',
+              style: TextStyle(fontSize: 15, color: Colors.white),),
+            SizedBox(height: 5),
+            Text('ID User: ${widget.transaksi['id_user']}',
+              style: TextStyle(fontSize: 15, color: Colors.white),),
+            SizedBox(height: 10),
+            Text('ID Transaksi: ${widget.transaksi['transaksi_id']}',
+              style: TextStyle(fontSize: 15, color: Colors.white),),
+            SizedBox(height: 5),
+            Text('----------------------------------------------------------',
+              style: TextStyle(fontSize: 15, color: Colors.white),),
+            SizedBox(height: 25),
+            Text('Nama: ${widget.transaksi['nama_user']}',
+              style: TextStyle(fontSize: 15, color: Colors.white),),
+            SizedBox(height: 10),
+            Text('Jumlah Barang: ${widget.transaksi['qty']}',
+                style: TextStyle(fontSize: 15, color: Colors.white)),
+            SizedBox(height: 10),
+            Text('Jumlah Transaksi: Rp.${widget.transaksi['total_transaksi']}',
+                style: TextStyle(fontSize: 15, color: Colors.white)),
+            SizedBox(height: 10),
+            Text('Metode Pembayaran: ${widget.transaksi['metode_pembayaran']}',
+                style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
             Text('Tanggal: ${DateTime.parse(widget.transaksi['create_transaksi']).toString()}',
-                style: TextStyle(fontSize: 18, color: Colors.white)),
+                style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
-            Text('Jumlah: ${widget.transaksi['qty']}',
-                style: TextStyle(fontSize: 18, color: Colors.white)),
-            SizedBox(height: 10),
-            Text(
-                'Status : ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',
-                style: TextStyle(fontSize: 18, color: Colors.white)),
+            Text('Status Pembayaran: ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',
+                style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 20),
             Center(
               child: ElevatedButton(

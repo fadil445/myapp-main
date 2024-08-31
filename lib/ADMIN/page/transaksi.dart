@@ -17,15 +17,6 @@ class _TransaksiState extends State<Transaksi> {
   List<Map<String, dynamic>> filteredTransaksiList = [];
   bool isLoading = true;
   String _searchQuery = '';
-
-
-  // final List<Map<String, dynamic>> _transaksiList = List.generate(20, (index) => {
-  //   'id': index + 1,
-  //   'tanggal': DateTime.now().subtract(Duration(days: index)),
-  //   'jumlah': 'Rp.${index * 12000}', // Mengganti format dolar dengan rupiah
-  //   'deskripsi': 'Deskripsi detail transaksi #$index',
-  //   'akun': 'Akun ${index % 20 + 1}', // ID Akun, contoh Akun 1, Akun 2, Akun 3
-  // });
   
   Future<void> _fetchTransaksi() async {
     try {
@@ -89,7 +80,7 @@ class _TransaksiState extends State<Transaksi> {
                   _searchQuery = query;
                 });
                 filteredTransaksiList = transaksiList
-                .where((transaksi) => transaksi['transaksi_id'].toString().contains(_searchQuery))
+                .where((transaksi) => transaksi['nama_user'].toString().contains(_searchQuery))
                 .toList();
               },
               decoration: InputDecoration(
@@ -118,7 +109,7 @@ class _TransaksiState extends State<Transaksi> {
                   margin: const EdgeInsets.symmetric(vertical: 10),
                   child: ListTile(
                     leading: Icon(Icons.money_off, color: const Color.fromARGB(255, 194, 55, 13)),
-                    title: Text('Transaksi #${transaksiItem['transaksi_id']}'),
+                    title: Text('${transaksiItem['nama_user']}'),
                     onTap: () {
                       Navigator.push(
                         context,
