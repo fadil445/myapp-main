@@ -28,11 +28,12 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
     );
 
     if (response.statusCode == 200) {
+      
       List<dynamic> data = jsonDecode(response.body)['data'];
 
       setState(() {
         _promo = data;
-        _promoList = data.map((item) => item['judul_promo']).toList().cast<String>();
+        _promoList = data.map((item) => item['judul%20promo']).toList().cast<String>();
         _promoIdList = data.map((item) => item['promo_id']).toList().cast<String>();
       });
     } else {
@@ -92,7 +93,7 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
               DropdownButtonFormField<String>(
                 value: _selectedPromoId,
                 hint: Text('Pilih Promo'),
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.black),
                 onChanged: (String? newValue) {
                   setState(() {
                     _selectedPromoId = newValue;
@@ -101,7 +102,7 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
                 items: _promo.map<DropdownMenuItem<String>>((value) {
                   return DropdownMenuItem<String>(
                     value: value['promo_id'],
-                    child: Text(value['judul_promo'] ?? ''),
+                    child: Text(value['judul promo'] ?? ''),
                   );
                 }).toList(),
                 validator: (value) => value == null ? 'Pilih promo yang ingin dihapus' : null,
