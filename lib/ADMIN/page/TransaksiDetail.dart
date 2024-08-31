@@ -63,7 +63,7 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
   Future<File?> _savePdfToFile(pw.Document pdf) async {
     try {
       final outputFile = File(
-          '${(await getTemporaryDirectory()).path}/detail_transaksi_${widget.transaksi['id']}.pdf');
+          '${(await getTemporaryDirectory()).path}/Transaksi ${widget.transaksi['nama_user']}.pdf');
       await outputFile.writeAsBytes(await pdf.save());
       return outputFile;
     } catch (e) {

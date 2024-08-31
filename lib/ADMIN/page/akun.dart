@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:myapp/ADMIN/page/AkunDetail.dart';
@@ -39,7 +38,6 @@ class _AkunPageState extends State<AkunPage> {
     },
     // Tambahkan akun lainnya di sini
   ];
-
 
   Future<void> _fetchAkun() async {
     try {
@@ -89,7 +87,7 @@ class _AkunPageState extends State<AkunPage> {
       print('Nama: ${akunItem['nama_user']}');
       print('No Hp: ${akunItem['no_handphone']}');
       print('Alamat: ${akunItem['alamat']}');
-      print('Email: ${akunItem['username']}');
+      print('Email: ${akunItem['gmail']}');
     }
   }
 
@@ -143,39 +141,17 @@ class _AkunPageState extends State<AkunPage> {
                   color: Colors.grey[500], // Warna background card
                   elevation: 4,
                   margin: const EdgeInsets.symmetric(vertical: 10),
-                  child: ExpansionTile(
-                    backgroundColor:
-                        Colors.white70, // Warna background tile yang diexpand
-                    leading: const Icon(Icons.person,
-                        color: Colors.deepOrangeAccent), // Warna icon
+                  child: ListTile(
+                    leading: const Icon(Icons.person, color: Colors.deepOrangeAccent),
                     title: Text(akunItem['nama_user']),
-                    children: <Widget>[
-                      ListTile(
-                        title: Text('No Hp: ${akunItem['no_handphone']}'),
-                      ),
-                      ListTile(
-                        title: Text('Alamat: ${akunItem['alamat']}'),
-                      ),
-                      ListTile(
-                        title: Text('Email: ${akunItem['username']}'),
-                      ),
-                      ListTile(
-                        title: TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AkunDetail(akun: akunItem),
-                              ),
-                            );
-                          },
-                          child: const Text(
-                            'Selengkapnya',
-                            style: TextStyle(color: Colors.deepOrangeAccent),
-                          ),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AkunDetail(akun: akunItem),
                         ),
-                      ),
-                    ],
+                      );
+                    },
                   ),
                 );
               },

@@ -25,10 +25,21 @@ class _AkunDetailState extends State<AkunDetail> {
             children: [
               pw.Text('Detail Akun', style: pw.TextStyle(fontSize: 24)),
               pw.SizedBox(height: 20),
+              pw.Text('------------------------------------'),
+              pw.SizedBox(height: 4),
+              pw.Text('Username: ${widget.akun['username']}'),
+              pw.SizedBox(height: 2),
+              pw.Text('ID User: ${widget.akun['user_id']}'),
+              pw.SizedBox(height: 4),
+              pw.Text('------------------------------------'),
+              pw.SizedBox(height: 4),
               pw.Text('Nama: ${widget.akun['nama_user']}'),
+              pw.SizedBox(height: 2),
               pw.Text('No HP: ${widget.akun['no_handphone']}'),
+              pw.SizedBox(height: 2),
               pw.Text('Alamat: ${widget.akun['alamat']}'),
-              pw.Text('Email: ${widget.akun['username']}'),
+              pw.SizedBox(height: 2),
+              pw.Text('E-mail: ${widget.akun['gmail']}'),
             ],
           );
         },
@@ -40,13 +51,13 @@ class _AkunDetailState extends State<AkunDetail> {
     if (outputFile != null) {
       Printing.sharePdf(
           bytes: outputFile.readAsBytesSync(),
-          filename: 'detail_akun_${widget.akun['nama_user']}.pdf');
+          filename: 'Akun ${widget.akun['nama_user']}.pdf');
     }
   }
 
   Future<File?> _savePdfToFile(pw.Document pdf) async {
     try {
-      final outputFile = File('${(await getTemporaryDirectory()).path}/detail_akun_${widget.akun['nama_user']}.pdf');
+      final outputFile = File('${(await getTemporaryDirectory()).path}/Akun${widget.akun['nama_user']}.pdf');
       await outputFile.writeAsBytes(await pdf.save());
       return outputFile;
     } catch (e) {
@@ -82,18 +93,30 @@ class _AkunDetailState extends State<AkunDetail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Nama: ${widget.akun['nama_user']}', 
+            Text('----------------------------------------------------------',
+            style: TextStyle(fontSize: 15, color: Colors.white),),
+            SizedBox(height: 5),
+            Text('Username: ${widget.akun['username']}', 
             style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
-            Text('No Hp: ${widget.akun['no_handphone']}', 
+            Text('ID User: ${widget.akun['user_id']}', 
+            style: TextStyle(fontSize: 15, color: Colors.white)),
+            SizedBox(height: 5),
+            Text('----------------------------------------------------------',
+            style: TextStyle(fontSize: 15, color: Colors.white),),
+            SizedBox(height: 25),
+            Text('Nama      :  ${widget.akun['nama_user']}', 
             style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
-            Text('Alamat: ${widget.akun['alamat']}', 
+            Text('No Hp     :  ${widget.akun['no_handphone']}', 
             style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
-            Text('Email: ${widget.akun['username']}', 
+            Text('Alamat   :  ${widget.akun['alamat']}', 
             style: TextStyle(fontSize: 15, color: Colors.white)),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
+            Text('E-mail     :  ${widget.akun['gmail']}', 
+            style: TextStyle(fontSize: 15, color: Colors.white)),
+            SizedBox(height: 50),
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(

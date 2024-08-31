@@ -29,7 +29,7 @@ class _SidemenuListState extends State<SidemenuList> {
               backgroundColor: Color.fromRGBO(243, 162, 11, 1),
             ),
             title: const Text(
-              'Primery',
+              'Primary',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
