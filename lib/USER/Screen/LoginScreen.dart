@@ -16,14 +16,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
     String token = '';
 
   Future<void> _login() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+    if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       _showDialog('Pemberitahuan !!!', 'Akun data tidak benar!');
       return;
     }
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
       final response = await http.post(
         Uri.parse('${dotenv.env['ENDPOINT']}/'),  
         body: {
-          "username": _emailController.text,
+          "username": _usernameController.text,
           "password": _passwordController.text,
           "action": "login",
         },
@@ -170,9 +170,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextField(
-                          controller: _emailController,
+                          controller: _usernameController,
                           decoration: const InputDecoration(
-                            labelText: 'Gmail',
+                            labelText: 'Username',
                             labelStyle: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(182, 179, 90, 17),

@@ -87,7 +87,7 @@ class _AkunPageState extends State<AkunPage> {
   void cetakAkun() {
     for (var akunItem in filteredAkunList) {
       print('Nama: ${akunItem['nama_user']}');
-      print('No HP: ${akunItem['no_handphone']}');
+      print('No Hp: ${akunItem['no_handphone']}');
       print('Alamat: ${akunItem['alamat']}');
       print('Email: ${akunItem['username']}');
     }
@@ -151,7 +151,7 @@ class _AkunPageState extends State<AkunPage> {
                     title: Text(akunItem['nama_user']),
                     children: <Widget>[
                       ListTile(
-                        title: Text('No HP: ${akunItem['no_handphone']}'),
+                        title: Text('No Hp: ${akunItem['no_handphone']}'),
                       ),
                       ListTile(
                         title: Text('Alamat: ${akunItem['alamat']}'),

@@ -13,7 +13,8 @@ class Createscreen extends StatefulWidget {
 
 class _CreatescreenState extends State<Createscreen> {
 //Sign Up
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _gmailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordConController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -43,7 +44,7 @@ Future<void> _register() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     
 
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+    if (_usernameController.text.isEmpty || _passwordController.text.isEmpty) {
       _showDialog('Pemberitahuan !!!', 'Akun data tidak benar!');
       return;
     }
@@ -52,7 +53,8 @@ Future<void> _register() async {
       final response = await http.post(
         Uri.parse('${dotenv.env['ENDPOINT']}/'),  
         body: {
-          "username": _emailController.text,
+          "username": _usernameController.text,
+          "gmail": _gmailController.text,
           "password": _passwordController.text,
           "password2" :_passwordConController.text,
           "nama_user" : _nameController.text,
@@ -137,10 +139,10 @@ _showDialog('Pemberitahuan !!!', 'BERHASIL silahkan login!');
 //kolom nama
                       
                  TextField(
-                  controller: _nameController,
+                  controller: _usernameController,
                         decoration: InputDecoration(
                             label: Text(      
-                          'Full Name',
+                          'Username',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color(0xffB81736),
@@ -148,8 +150,18 @@ _showDialog('Pemberitahuan !!!', 'BERHASIL silahkan login!');
                         )),
                       ),
                  TextField(
-
-                  controller: _emailController,
+                  controller: _nameController,
+                        decoration: InputDecoration(
+                            label: Text(
+                          'Fullname',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xffB81736),
+                          ),
+                        )),
+                      ),
+                 TextField(
+                  controller: _gmailController,
                         decoration: InputDecoration(
                             label: Text(
                           'Gmail',

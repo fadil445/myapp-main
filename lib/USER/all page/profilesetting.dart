@@ -26,7 +26,7 @@ class _ProfilesettingState extends State<Profilesetting> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _addressController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _gmailController = TextEditingController();
 
   Future<void> _pickImage() async {
     final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -110,7 +110,7 @@ class _ProfilesettingState extends State<Profilesetting> {
           _usernameController.text = akun['username'];
           _passwordController.text = akun['password'];
           _addressController.text = akun['alamat'];
-          _emailController.text = 'tidak ada email';
+          _gmailController.text = akun['gmail'];
           _phoneController.text = akun['no_handphone'];
           _nameController.text = akun['nama_user'];
         });
@@ -128,11 +128,10 @@ class _ProfilesettingState extends State<Profilesetting> {
     request.fields['action'] = 'update_profil';
     request.fields['id_user'] = id_user;
     request.fields['username'] = _usernameController.text;
-    // request.fields['password'] = _passwordController.text;
     request.fields['no_handphone'] = _phoneController.text;
     request.fields['alamat'] = _addressController.text;
     request.fields['nama_user'] = _nameController.text;
-    
+    request.fields['gmail'] = _gmailController.text;
 
     request.files.add(await http.MultipartFile.fromPath('image', file.path));
 
@@ -261,9 +260,9 @@ class _ProfilesettingState extends State<Profilesetting> {
               ),
               ListTile(
                 contentPadding: EdgeInsets.all(20),
-                title: Text("Email :"),
+                title: Text("Gmail :"),
                 subtitle: TextField(
-                  controller: _emailController,
+                  controller: _gmailController,
                 ),
               ),
             ],

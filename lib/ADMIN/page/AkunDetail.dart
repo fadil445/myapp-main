@@ -59,7 +59,7 @@ class _AkunDetailState extends State<AkunDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Akun ${widget.akun['nama_user']}'),
+        title: Text('Detail Akun'),
         leading: IconButton(
           iconSize: 20,
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
@@ -82,13 +82,17 @@ class _AkunDetailState extends State<AkunDetail> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Nama: ${widget.akun['nama_user']}', style: TextStyle(fontSize: 18, color: Colors.white)),
+            Text('Nama: ${widget.akun['nama_user']}', 
+            style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
-            Text('No HP: ${widget.akun['no_handphone']}', style: TextStyle(fontSize: 18, color: Colors.white)),
+            Text('No Hp: ${widget.akun['no_handphone']}', 
+            style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
-            Text('Alamat: ${widget.akun['alamat']}', style: TextStyle(fontSize: 18, color: Colors.white)),
+            Text('Alamat: ${widget.akun['alamat']}', 
+            style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 10),
-            Text('Email: ${widget.akun['username']}', style: TextStyle(fontSize: 18, color: Colors.white)),
+            Text('Email: ${widget.akun['username']}', 
+            style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 20),
             Center(
               child: ElevatedButton(
