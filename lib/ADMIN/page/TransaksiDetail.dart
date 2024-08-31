@@ -128,7 +128,7 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
             SizedBox(height: 10),
             Text('Status Pembayaran: ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',
                 style: TextStyle(fontSize: 15, color: Colors.white)),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             Center(
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(

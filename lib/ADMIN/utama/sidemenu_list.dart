@@ -59,11 +59,11 @@ class _SidemenuListState extends State<SidemenuList> {
             icon: Icons.category_outlined,
             items: [
               DropdownMenuItem(
-                child: Text("Tambah"),
+                child: Text("Tambah barang"),
                 value: "tambah",
               ),
               DropdownMenuItem(
-                child: Text("Hapus"),
+                child: Text("Hapus barang"),
                 value: "hapus",
               ),
             ],
@@ -87,11 +87,11 @@ class _SidemenuListState extends State<SidemenuList> {
             icon: Icons.newspaper_outlined,
             items: [
               DropdownMenuItem(
-                child: Text("Tambah"),
+                child: Text("Tambah promo"),
                 value: "tambah",
               ),
               DropdownMenuItem(
-                child: Text("Hapus"),
+                child: Text("Hapus promo"),
                 value: "hapus",
               ),
             ],
@@ -193,7 +193,7 @@ class _SidemenuListState extends State<SidemenuList> {
           items: items,
           onChanged: onSelected,
           underline: SizedBox(),
-          dropdownColor: Colors.black,
+          dropdownColor: const Color.fromARGB(239, 126, 125, 125),
           iconEnabledColor: Color.fromRGBO(243, 162, 11, 1),
           style: const TextStyle(color: Colors.white),
         ),

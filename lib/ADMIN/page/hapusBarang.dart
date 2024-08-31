@@ -91,7 +91,7 @@ class _HapusBarangState extends State<HapusBarang> {
             children: [
               DropdownButtonFormField<String>(
                 value: _selectedBarangId,
-                hint: Text('Pilih Barang'),
+                hint: Text('Pilih Barang', style: TextStyle(color: Colors.white),),
                 style: TextStyle(color: Colors.grey),
                 onChanged: (String? newValue) {
                   setState(() {
@@ -113,7 +113,7 @@ class _HapusBarangState extends State<HapusBarang> {
                     _hapusBarang();
                   }
                 },
-                child: Text('Hapus Barang'),
+                child: Text('Hapus Barang', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(218, 251, 138, 0),
                 ),

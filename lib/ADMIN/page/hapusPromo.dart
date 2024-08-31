@@ -92,7 +92,8 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
             children: [
               DropdownButtonFormField<String>(
                 value: _selectedPromoId,
-                hint: Text('Pilih Promo'),
+                hint: Text('Pilih Promo', 
+                style: TextStyle(color: Colors.white),),
                 style: TextStyle(color: Colors.black),
                 onChanged: (String? newValue) {
                   setState(() {
@@ -114,7 +115,7 @@ class _HapusBeritaPromoState extends State<HapusBeritaPromo> {
                     _hapusPromo();
                   }
                 },
-                child: Text('Hapus Promo'),
+                child: Text('Hapus Promo', style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(218, 251, 138, 0),
                 ),
