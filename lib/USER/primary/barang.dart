@@ -90,7 +90,7 @@ class _BarangListState extends State<BarangList> {
                     child: ListTile(
                       contentPadding: EdgeInsets.all(7),
                       title: Text(item['nama_barang'] ?? ""),
-                      subtitle: Text(item['harga_barang'] ?? ""),
+                      subtitle: Text("Rp. ${item['harga_barang']}"),
                       leading: item['image'] != ''
                           ? Image.memory(base64Decode(item['image']))
                           : null,

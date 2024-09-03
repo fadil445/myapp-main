@@ -214,7 +214,7 @@ class _CartPageState extends State<CartPage> {
                     height: 50, // tinggi box Text
                     alignment: Alignment.centerLeft,
                     child: Text(
-                      'Total : Rp.${(cart.total)}',
+                      'Total Pembayaran : Rp.${(cart.total)}',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),
