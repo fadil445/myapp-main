@@ -16,7 +16,8 @@ class _BeritapromoState extends State<Beritapromo> {
   final _judulPromoController = TextEditingController();
   final _deskripsiController = TextEditingController();
   final _hargaController = TextEditingController();
-  final _tanggalController = TextEditingController();
+  final _tanggalmulaiController = TextEditingController();
+  final _tanggalakhirController = TextEditingController();
 
   final List<String> _kategoriList = [
     'Beras',
@@ -139,9 +140,9 @@ class _BeritapromoState extends State<Beritapromo> {
                 ),
                 SizedBox(height: 16.0),
                 TextFormField(
-                  controller: _tanggalController,
+                  controller: _tanggalmulaiController,
                   decoration: InputDecoration(
-                    labelText: 'Tanggal Promo',
+                    labelText: 'Tanggal Mulai Promo',
                     labelStyle: TextStyle(color: Colors.white),
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.white),
@@ -163,7 +164,41 @@ class _BeritapromoState extends State<Beritapromo> {
                       String formattedDate =
                           "${pickedDate.day}-${pickedDate.month}-${pickedDate.year}";
                       setState(() {
-                        _tanggalController.text = formattedDate;
+                        _tanggalmulaiController.text = formattedDate;
+                      });
+                    }
+                  },
+                  validator: (value) => value == null || value.isEmpty
+                      ? 'Tanggal Promo tidak boleh kosong'
+                      : null,
+                ),
+                SizedBox(height: 16.0),
+                TextFormField(
+                  controller: _tanggalakhirController,
+                  decoration: InputDecoration(
+                    labelText: 'Tanggal Berakhir Promo',
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                  ),
+                  style: TextStyle(color: Colors.white),
+                  onTap: () async {
+                    DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2101),
+                    );
+
+                    if (pickedDate != null) {
+                      String formattedDate =
+                          "${pickedDate.day}-${pickedDate.month}-${pickedDate.year}";
+                      setState(() {
+                        _tanggalakhirController.text = formattedDate;
                       });
                     }
                   },
@@ -218,7 +253,7 @@ class _BeritapromoState extends State<Beritapromo> {
                             body: {
                               'action': 'insert_promo',
                               'judul_promo': _judulPromoController.text,
-                              'tanggal_promo': _tanggalController.text,
+                              'tanggal_promo': _tanggalakhirController.text,
                               'isi_promo': _deskripsiController.text,
                               'harga_promo': _hargaController.text,
                             },

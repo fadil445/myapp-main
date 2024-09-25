@@ -42,8 +42,10 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
               pw.SizedBox(height: 2),
               pw.Text('Metode Pembayaran: ${widget.transaksi['metode_pembayaran']}'),
               pw.SizedBox(height: 2),
-              pw.Text('Status: ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',
-              ),
+              pw.Text('Status: ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',),
+              pw.SizedBox(height: 9),
+              pw.Text('*Nb. Pengiriman diluar kota surakarta dikenakan\npembayaran ongkir secara Cash On Delivery'),
+              pw.SizedBox(height: 2),
             ],
           );
         },
@@ -129,7 +131,7 @@ class _DetailTransaksiState extends State<DetailTransaksi> {
             Text('Status Pembayaran: ${widget.transaksi['qty'] == 0 ? 'Belum diproses' : 'Selesai'}',
                 style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 40),
-            Text('Nb. Pengiriman diluar kota surakarta dikenakan pembayaran ongkir',
+            Text('*Nb. Pengiriman diluar kota surakarta dikenakan pembayaran ongkir secara Cash On Delivery',
                 style: TextStyle(fontSize: 15, color: Colors.white)),
             SizedBox(height: 50),
             Center(

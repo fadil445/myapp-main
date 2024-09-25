@@ -109,29 +109,8 @@ class _HomeAdmState extends State<HomeAdm> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Laporan penjualan tanggal',
+                    'Laporan penjualan',
                     style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                  DropdownButton<String>(
-                    value: selectedDate,
-                    dropdownColor: Color.fromARGB(255, 64, 52, 125),
-                    icon: Icon(Icons.arrow_drop_down, color: Colors.white),
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                    underline: Container(
-                      height: 2,
-                      color: Colors.white,
-                    ),
-                    onChanged: (String? newValue) {
-                      setState(() {
-                        selectedDate = newValue!;
-                      });
-                    },
-                    items: dates.map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    }).toList(),
                   ),
                 ],
               ),
